@@ -48,7 +48,20 @@
 /spring/*.pid
 
 # Ignore coverage directory for test coverage tools (e.g., SimpleCov).
+*.gem
+*.rbc
+/.config
 /coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+# Used by dotenv library to load environment variables.
+# .env
 
 # Ignore test result logs (Minitest, RSpec).
 /test/tmp
