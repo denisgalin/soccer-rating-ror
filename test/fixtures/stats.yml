@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player: one
+  goals: 1
+  assists: 1
+  saves: 1
+  shots: 1
+  passes: 1
+
+two:
+  player: two
+  goals: 1
+  assists: 1
+  saves: 1
+  shots: 1
+  passes: 1
