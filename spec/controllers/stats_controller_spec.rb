@@ -28,4 +28,22 @@ RSpec.describe StatsController, type: :controller do
       expect(JSON.parse(response.body)).to eq({ 'message' => 'Stat creation successful' })
     end
   end
+  describe 'POST #create' do
+    let!(:team) { create(:team, name: 'FC Defaults') }
+    let!(:player) { create(:player, team:) }
+
+    it 'enqueues a RatingCalculatorJob' do
+      expect {
+        post :create, params: { player_id: player.id, stat: { goals: 2, assists: 1, saves: 0 } }
+      }.to change(RatingCalculatorJob.jobs, :size).by(1)
+    end
+
+    it 'updates the player rating asynchronously' do
+      post :create, params: { player_id: player.id, stat: { goals: 2, assists: 1, saves: 0 } }
+      # ждем асинк
+      sleep 1
+      player.reload
+      expect(player.rating).to eq(2 * 3 + 1 * 2 + 0 * 5) # Проверка, что рейтинг обновлен
+    end
+  end
 end

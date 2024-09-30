@@ -25,4 +25,21 @@ RSpec.describe PlayersController, type: :controller do
       )
     end
   end
+
+  describe 'GET #index' do
+    let!(:team) { create(:team, name: 'FC Defaulst') }
+    let!(:players) { create_list(:player, 25, team:) }
+
+    it 'returns paginated players' do
+      get :index, params: { page: 1 }
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body).size).to eq(2)
+    end
+
+    it 'returns the next page of players' do
+      get :index, params: { page: 2 }
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body).size).to eq(2) # Проверяем, что возвращается 10 игроков
+    end
+  end
 end
