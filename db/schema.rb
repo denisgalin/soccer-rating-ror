@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_30_073537) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_30_074552) do
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "role"
@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_30_073537) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "rating"
+    t.integer "team_id"
+    t.index ["team_id"], name: "index_players_on_team_id"
   end
 
   create_table "stats", force: :cascade do |t|
@@ -32,5 +34,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_30_073537) do
     t.index ["player_id"], name: "index_stats_on_player_id"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "players", "teams"
   add_foreign_key "stats", "players"
 end

@@ -1,24 +1,15 @@
-# README
+Приверы:
+Запрос POST для добавления статистики
+URL: http://localhost:3000/players/:player_id/stats
+{
+"stat": {
+"goals": 2,
+"assists": 1,
+"shots": 3,
+"passes": 5,
+"saves": 0
+}
+}
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Запрос GET для получения рейтинга
+URL: http://localhost:3000/players/:player_id/rating

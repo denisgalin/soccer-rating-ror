@@ -5,5 +5,8 @@ Rails.application.routes.draw do
 
   resources :players, only: %i[index show] do
     resources :stats, only: :create
+    member do
+      get 'rating'
+    end
   end
 end
